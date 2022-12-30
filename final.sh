@@ -226,8 +226,9 @@ done
   esac
 done
 
+
 # Present the final total price to the user
-echo "Total price: $total_price"
+#echo "Total price: $total_price"
 
 # Prompt the user to enter their payment information
 #echo "Please enter your payment information:"
@@ -237,8 +238,16 @@ echo "Total price: $total_price"
 # Save the order to a database or file
 # Send a confirmation email to the user
 
-echo "Thank you for your purchase! Your order has been processed and will be shipped shortly."
+ if [[ "$choice" == "4" ]]; then
+    # Display the invoice
 
-# Print the final price after payment has been processed
-echo "Final price: $total_price"
+echo "<h1>Invoice</h1>" > invoice.html
+echo "<p>Total price: $total_price</p>" >> invoice.html
 
+wkhtmltopdf invoice.html invoice.pdf
+# Remove the HTML document
+rm invoice.html
+#move the document
+mv invoice.pdf ~
+    exit
+  fi
