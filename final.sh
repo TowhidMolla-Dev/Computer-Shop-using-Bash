@@ -240,14 +240,15 @@ done
 
  if [[ "$choice" == "4" ]]; then
     # Display the invoice
-
+echo "Final total price: $total_price"
 echo "<h1>Invoice</h1>" > invoice.html
-echo "<p>Total price: $total_price</p>" >> invoice.html
+echo "<p>Final total price: $total_price</p>" >> invoice.html
 
 wkhtmltopdf invoice.html invoice.pdf
 # Remove the HTML document
 rm invoice.html
 #move the document
 mv invoice.pdf ~
+evince ~/invoice.pdf 
     exit
   fi
